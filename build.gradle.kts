@@ -1,5 +1,5 @@
 plugins {
-	java
+	id("java")
 	id("org.springframework.boot") version "3.2.4"
 	id("io.spring.dependency-management") version "1.1.4"
 }
@@ -34,8 +34,32 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+
+	//queryDSL 설정
+	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+	implementation("com.querydsl:querydsl-core")
+	implementation("com.querydsl:querydsl-collections")
+	annotationProcessor("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jakarta")
+	annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+	annotationProcessor("jakarta.persistence:jakarta.persistence-api")
 }
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+//Querydsl 설정부
+val generated = "src/main/generated"
+
+tasks.withType<JavaCompile> {
+	options.generatedSourceOutputDirectory.set(file(generated))
+}
+
+java.sourceSets["main"].java {
+	srcDir(generated)
+}
+
+tasks.named<Delete>("clean") {
+	delete(file(generated))
 }
