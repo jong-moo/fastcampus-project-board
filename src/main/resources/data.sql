@@ -17,5 +17,9 @@ insert into article_comment (article_id, content, created_at, modified_at, creat
 (3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', '2021-04-10 00:47:10', '2021-02-06 20:58:04', 'Duff', 'Early')
 ;
 
-
+-- 테스트 계정
+-- TODO 테스트용이지만 비밀번호가 노출된 데이터 세팅, 개선하는것이 좋을지 고민필요
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values (
+'moo', 'qwer1234', 'Moo', 'moo@email.com', 'I am moo', now(), 'moo', now(), 'moo'
+);
 

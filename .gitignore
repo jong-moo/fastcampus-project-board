@@ -225,3 +225,5 @@ gradle-app.setting
 .idea/codeStyles/Project.xml
 
 .idea/codeStyles/codeStyleConfig.xml
+
+src/main/generated/com/fastcampus/projectboard/domain/QUserAccount.java
